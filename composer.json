@@ -1,0 +1,7 @@
+{
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=7.0.22",
+        "firebase/php-jwt": "^6.4"
+    }
+}
