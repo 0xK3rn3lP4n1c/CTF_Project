@@ -20,7 +20,13 @@ class Login extends BaseModel
     {
         echo $this->uname . $this->pass . "</br>";
     }
+  
+    public function isAdmin()
+    {
+       echo "sdadasdasdsdsadsada";
+    }
 
+    
     public function generateJwt()
     {
     $secretKey = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew=';

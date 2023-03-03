@@ -6,6 +6,7 @@ use app\models\Login;
 use DateTimeImmutable;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+
 /**
  * Task Controller.
  */
@@ -31,9 +32,15 @@ class TaskController extends BaseController
 
             // Generate JWT token
             $login->generateJwt();
+            $localStorage = 'localStorage';
 
+            echo '<script>';
+            echo 'var jwt = "' . $login->jwt . '";';
+            echo $localStorage . '.setItem("jwt", jwt);';
+            echo '</script>';
+            
             // Render view with JWT token
-            $this->render('LoginSuccess.php', ['jwt' => $login->jwt, 'login' => $login]);
+            $this->render('AssigmentPage.php');
         } else {
             // Render login form
             $this->render('LoginForm.php', ['login' => $login]);
@@ -71,6 +78,8 @@ class TaskController extends BaseController
             // provided JWT algorithm does not match provided key OR
             // provided key ID in key/key-array is empty or invalid.
         }
-        var_dump($decoded);die();
+        var_dump($decoded);
+        die();
     }
+   
 }
