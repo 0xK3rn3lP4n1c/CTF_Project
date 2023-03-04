@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web Site</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-HcXJcyQV1AAwPj6jzw7cvyN1pLy65KqpXhXuP2sjKsoU6ZlT/k8Ck9aJvoRxT2PI"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.16/dist/tailwind.min.css">
+	<link rel="stylesheet" href="/dist/css/style.css">
+
+    <!--Javascript-->
+    <script src="/dist/js/authorization.js"></script>
+
+</head>
+<body class="dark-mode">
+	<header>
+		<h1>Hoş Geldiniz</h1>
+		<nav>
+			<ul>
+				<li><a href="index.html">Ana Sayfa</a></li>
+				<li><a href="/pages/user.html">Kullanıcı Sayfası</a></li>
+				<li><a href="/admin.html">Admin Sayfası</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h2>Giriş Yapın</h2>
+		<form action="" method="POST">
+			<label for="username">Kullanıcı Adı:</label>
+			<input type="text" id="username" name="username" required>
+			<label for="password">Şifre:</label>
+			<input type="password" id="password" name="password" required>
+			<button type="submit">Giriş Yap</button>
+		</form>
+	</main>
+</body>
+</html>

@@ -1,0 +1,67 @@
+/* Global stiller */
+@import url('https://unpkg.com/tailwindcss@2.2.16/dist/tailwind.min.css');
+
+nav {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li {
+  margin-right: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+header {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+main {
+  margin: 20px;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+}
+
+/* Index sayfası stilleri */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form input {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+form button {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 10px;
+}
+
+/* User ve admin sayfası stilleri */
+p {
+  line-height: 1.5;
+}
