@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         /*header('Location: flag.php');//succesful login
         exit();*/
-        $error = 'Bro you did it!';
+        $error = 'Correct entrance';
     }
     else
     {
@@ -29,34 +29,76 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         echo $password;
         echo $query;
         var_dump ($result->rowCount());
-        $error = 'Kullanıcı adı ya da Şifre Hatalı üzgünüm bro!';//failed login
+        $error = 'Kullanıcı adı ya da Şifre Hatalı!';//failed login
     }
 
  }
 
- ?>
-
- <!DOCTYPE html>
-<html>
-<head>
-    <title>Usomzette</title>
-</head>
-<body>
-    <h1>Login Page</h1>
-    <?php if (isset($error)) { ?>
+ ?><!DOCTYPE html>
+ <html>
+ <head>
+   <title>USOM TIMES</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
+   <header>
+     <h1>THE USOM TIMES</h1>
+    
+     <?php if (isset($error)) { ?>
         <p><?php echo $error; ?></p>
     <?php } ?>
-    <form method="post">
-        <label>Username:</label>
-        <input type="text" name="uname"><br><br>
-        <label>Password:</label>
-        <input type="password" name="pass"><br><br>
-        <input type="submit" value="Login">
-    </form>
-</body>
-</html>
 
-<?php
+     <form>
+       <label for="uname">Username:</label>
+       <input type="text" id="uname" name="uname">
+       <label for="pass">password:</label>
+       <input type="pass" id="pass" name="pass">
+       <input type="submit" value="Log In">
+     </form>
+     <nav>
+       <ul>
+         <li><a href="#">Home</a></li>
+         <li><a href="#">News</a></li>
+         <li><a href="#">Sports</a></li>
+         <li><a href="#">Entertainment</a></li>
+       </ul>
+     </nav>
+   </header>
+   <main>
+     <section>
+       <h2>Breaking News</h2>
+       <article>
+         <h3>Headline Goes Here</h3>
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget risus vitae felis fringilla rhoncus a a dolor. Donec facilisis, eros sit amet molestie faucibus, mi velit tempus massa, ac mollis mi libero a justo.</p>
+         <a href="#">Read More</a>
+       </article>
+       <article>
+         <h3>Headline Goes Here</h3>
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget risus vitae felis fringilla rhoncus a a dolor. Donec facilisis, eros sit amet molestie faucibus, mi velit tempus massa, ac mollis mi libero a justo.</p>
+         <a href="#">Read More</a>
+       </article>
+     </section>
+     <section>
+       <h2>Sports News</h2>
+       <article>
+         <h3>Headline Goes Here</h3>
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget risus vitae felis fringilla rhoncus a a dolor. Donec facilisis, eros sit amet molestie faucibus, mi velit tempus massa, ac mollis mi libero a justo.</p>
+         <a href="#">Read More</a>
+       </article>
+       <article>
+         <h3>Headline Goes Here</h3>
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget risus vitae felis fringilla rhoncus a a dolor. Donec facilisis, eros sit amet molestie faucibus, mi velit tempus massa, ac mollis mi libero a justo.</p>
+         <a href="#">Read More</a>
+       </article>
+     </section>
+   </main>
+   <footer>
+     <p>&copy; 2023 My News Site</p>
+   </footer>
+ </body>
+ </html>
+ 
+ <?php
 // Close the db connection
 $dbconn = null;
 ?>

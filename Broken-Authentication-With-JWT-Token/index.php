@@ -15,15 +15,18 @@ try {
     }
 
     $uri = substr($_SERVER['REQUEST_URI'], 1);
+    $uri = explode('?', $uri)[0];
     $parts = explode('/', $uri);
-    if (count($parts) < 2) {
-        throw new \InvalidArgumentException(
-            'Call parameter must be type controller/action',
-            1
-        );
+    $controller = 'app\controllers\TaskController';
+    $method = 'login';
+    if ($uri) {
+        if (count($parts) == 1 && $parts[0]) {
+            $method = $parts[0];
+        }else{
+            $method = $parts[1];
+            $controller = "app\controllers\\".ucfirst($parts[0]).'Controller';
+        }
     }
-    $controller = "app\controllers\\".ucfirst($parts[0]).'Controller';
-    $method = $parts[1];
 
     if (!class_exists($controller)) {
         throw new \BadMethodCallException('Controller does not exists', 1);

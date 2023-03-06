@@ -27,20 +27,19 @@ class TaskController extends BaseController
             // Set username and password from form data
             $login->uname = $_POST['uname'];
             $login->pass = $_POST['pass'];
-
-
-
+    
+            
             // Generate JWT token
             $login->generateJwt();
-            $localStorage = 'localStorage';
 
             echo '<script>';
             echo 'var jwt = "' . $login->jwt . '";';
-            echo $localStorage . '.setItem("jwt", jwt);';
+            echo 'localStorage.setItem("jwt", jwt);';
             echo '</script>';
+        
             
             // Render view with JWT token
-            $this->render('AssigmentPage.php');
+            $this->render('AssigmentPage.php', ['token' => $login->jwt]);
         } else {
             // Render login form
             $this->render('LoginForm.php', ['login' => $login]);
@@ -57,7 +56,7 @@ class TaskController extends BaseController
         $jwt = $request_headers['Authorization'];
 
         try {
-            $decoded = JWT::decode($jwt, new Key('bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew=', 'HS512'));
+            $decoded = JWT::decode($jwt, new Key('', 'HS512'));
         } catch (InvalidArgumentException $e) {
             // provided key/key-array is empty or malformed.
         } catch (DomainException $e) {
@@ -81,5 +80,51 @@ class TaskController extends BaseController
         var_dump($decoded);
         die();
     }
-   
+
+    function controlTheAssignment(){
+        $jwt = $_SESSION['bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew=']; // JWT token'ını alın
+        $secret = "HS512"; // JWT token'ı doğrulamak için kullanılacak gizli anahtar
+        $decoded = jwt_decode($jwt, $secret, true);
+        var_dump($decoded);
+        /*$isAdmin = $this->TaskController->controlTheAssignment();*/
+        if ($decoded ['uname'] == 'admin') {
+            return TRUE;
+        }else {
+            return FALSE;
+        }
+    }
+
+    function base64urlDecode($data){
+        $data = str_replace(['-','_'],['+','/'],$data);
+        $mod4 = strlen($data) % 4;
+        if ($mod4) {
+            $data .= substr('===', $mod4);
+        }
+        return base64_decode($data);
+    }
+
+    function assignment(){
+        if (!isset($_GET['token'])) {
+            throw new \Exception("Yetkisiz erişim", 1);
+        }
+        $jwt = $_GET['token'];
+
+        try {
+            $parts = explode('.', $jwt);
+            $header = $parts[0];
+            $payload = $parts[1];
+
+            $headerDecoded = json_decode($this->base64urlDecode($header));
+            $payloadDecoded = json_decode($this->base64urlDecode($payload));
+
+        }catch (\Exception $e) {
+            throw new \Exception($e->getMessage(), 1);
+        }
+        if ($payloadDecoded->data->uname != 'admin') {
+            throw new \Exception("Yetkisiz erişim", 1);
+        }
+        echo "Assignment Success";
+    }
+
 }
+?>

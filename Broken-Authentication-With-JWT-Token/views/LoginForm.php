@@ -1,5 +1,3 @@
-<!-- login_view.php -->
-
 <!DOCTYPE html>
 <html>
 <head>
