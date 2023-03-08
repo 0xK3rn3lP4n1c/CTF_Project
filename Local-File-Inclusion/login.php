@@ -6,13 +6,14 @@ if(isset($_POST['login'])){
     $input_uname = $_POST['uname'];
     $input_pass = $_POST['pass'];
 
-    $host = "localhost";
-    $port = "5432";
+    $host = "app-9a83fd38-dc77-44fd-875c-63a045f64310-do-user-10970795-0.b.db.ondigitalocean.com";
+    $port = "25060";
     $dbname = "webapp";
-    $user = "postgres";
-    $password = "postgres";
+    $user = "webapp";
+    $password = "AVNS_fOVbJKwQANokDYupn2v";
+    $sslMode = "require";
 
-    $dbconn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+    $dbconn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password sslmode=$sslMode");
     if (!$dbconn) {
         echo "db connection failure: " . preg_last_error();
     }
