@@ -38,7 +38,7 @@ try {
         throw new \BadMethodCallException('Action does not exists', 1);
     }
 
-    $controller->$method($argv);
+    $controller->$method();
 } catch (\Exception $e) {
     $out = fopen('php://stdout', 'w');
     fputs($out, $e->getMessage().PHP_EOL);
@@ -46,4 +46,3 @@ try {
     echo $e->getMessage();
 }
 
-exit();
