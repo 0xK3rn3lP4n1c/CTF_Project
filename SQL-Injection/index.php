@@ -1,52 +1,45 @@
 <?php
-$dbconn = new PDO('sqlite:mydatabase.db'); //Connect to the db
+$dbconn = new PDO('sqlite:mydatabase.db'); // Veritabanına bağlan
 
-//Chech the form
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
- {
-    $username = $_POST['uname']; //Get values
-    $password = $_POST['pass'];
-    
-    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password';";//are they valid
-    
+// Formun gönderilip gönderilmediğini kontrol et
+if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_GET['uname']) || isset($_GET['pass'])) {
+    $username = isset($_POST['uname']) ? $_POST['uname'] : $_GET['uname'];
+    $password = isset($_POST['pass']) ? $_POST['pass'] : $_GET['pass'];
+
+    $query = "SELECT * FROM users WHERE uname = '$username' OR pass = '$password';";
+
     $result = $dbconn->query($query);
     $result = $result->fetchAll();
 
-    foreach($result as $key => $item)
-    {
+    foreach($result as $key => $item) {
         echo $item['username'];
     }
 
-    if($result->rowCount() > 0)
-    {
-        /*header('Location: flag.php');//succesful login
-        exit();*/
-        $error = 'Correct entrance';
-    }
-    else
-    {
+    if(count($result) > 0) {
+        header('Location: flag.php');
+        exit();
+    } else {
         echo $username;
         echo $password;
         echo $query;
-        var_dump ($result->rowCount());
-        $error = 'Kullanıcı adı ya da Şifre Hatalı!';//failed login
+        $error = 'Kullanıcı adı ya da Şifre Hatalı!';
     }
+}
 
- }
 
  ?><!DOCTYPE html>
  <html>
  <head>
-   <title>USOM TIMES</title>
+   <title>USOM</title>
    <link rel="stylesheet" type="text/css" href="style.css">
  </head>
  <body>
    <header>
-     <h1>THE USOM TIMES</h1>
+     <h1>USOM</h1>
     
-     <?php if (isset($error)) { ?>
+     <?php if (isset($error)) ?>
         <p><?php echo $error; ?></p>
-    <?php } ?>
+    <?php ?>
 
      <form>
        <label for="uname">Username:</label>
