@@ -2,16 +2,13 @@
 if(isset($_GET['file'])) {
     // istenen dosya adını alın
     $file = $_GET['file'];
- 
-    // dosya yolu
-    $path = "/home/kaan/Desktop/CTF/lfi/" . $file;
- 
+
     // dosya var mı diye kontrol et
-    if(file_exists($path)) {
+    if(file_exists($file)) {
         // dosya başlığı ayarla
-        $content = file_get_contents($path);
+        $content = file_get_contents($file);
         echo $content;
-        require($path);
+        require($file);
         exit;
     }
 }
