@@ -25,8 +25,8 @@ class TaskController extends BaseController
         // Check if form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Set username and password from form data
-            $login->uname = $_POST['uname'];
-            $login->pass = $_POST['pass'];
+            $login->uname = 'uname';
+            $login->pass = 'pass';
     
             
             // Generate JWT token
