@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
             echo "Dosya başarıyla yüklendi.";
         } else {
-            echo "Dosya yüklenirken bir hata oluştu.";
+            echo "Dosya yüklenirken bir hata oluştu. #" .$_FILES["file"]["error"];
         }
     }
 }
